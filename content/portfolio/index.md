@@ -5,3 +5,6 @@ title = 'About'
 +++
 
 Hello there friend.
+
+![Image alt](canyon.jpeg)
+![Image alt 2](air-freshener.svg)
