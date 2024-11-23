@@ -3,8 +3,6 @@ date = '2024-11-20T16:13:13-08:00'
 draft = true
 title = 'About'
 +++
-![SVG Example](/headphones.svg")
-
 Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life. One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
 <!--more-->
 
@@ -16,6 +14,9 @@ A small river named Duden flows by their place and supplies it with the necessar
 2. Aliquam tincidunt mauris eu risus.
 
 > The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn't listen. She packed her seven versalia, put her initial into the belt and made herself on the way.
+
+![The Hugo Logo](images/jeanne.jpg "The Hugo Mascot")
+
 
 ## Header Level 2
 
