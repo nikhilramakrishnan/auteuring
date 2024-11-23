@@ -1,4 +1,19 @@
 baseURL = 'https://example.org/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'auteuring'
 theme = 'hugo-book'
+
+[params]
+  BookToC = true
+  BookDateFormat = 'Jan 2, 2006'
+  BookSearch = true
+  BookSection = "docs"
+
+[markup]
+  [markup.tableOfContents]
+    endLevel = 8
+    ordered = false
+    startLevel = 1
+
+  [markup.goldmark.renderer]
+  unsafe = true 
