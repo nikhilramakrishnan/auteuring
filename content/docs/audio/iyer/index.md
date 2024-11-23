@@ -2,7 +2,6 @@
 draft = false
 title = 'iyer'
 bookHidden = false
-weight = 10
 +++
 
 # iyer
