@@ -1,4 +1,4 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://auteur.ing'
 languageCode = 'en-us'
 title = 'auteuring'
 theme = 'hugo-book'
