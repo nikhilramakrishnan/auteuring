@@ -1,8 +1,8 @@
 +++
 draft = false
-title = 'i. the early days - influences'
+title = 'the early days - influences'
 bookHidden = false
-weight = 20
+weight = 1
 +++
 
 My roots in DJing were born from a love of music. I stumbled across drum and bass and obsessed about learning how to DJ. Some music left more of an impact on me than others: 

@@ -1,8 +1,8 @@
 +++
 draft = false
-title = 'ii. now - releases'
+title = 'now - releases'
 bookHidden = false
-weight = 20
+weight = 3
 +++
 
 I spend a lot of my time digging through world music, looking for inspiration, while melding my love for cinema and music together with my love for technology. 
