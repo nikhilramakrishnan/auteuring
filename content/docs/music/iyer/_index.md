@@ -14,7 +14,7 @@ You can buy my stuff generally anywhere, but best on [Bandcamp.](https://iyer.ba
   <a href="https://iyer.bandcamp.com/album/farewell">farewell by iyer</a>
 </iframe>
 
-Streaming services only contain a subset of my music. 
+Streaming services only contain a subset of my music. This is my way of saying thank you to all those fans who found and supported my music before. But that's not to say I won't re-release the back catalogue - rather, that time will come. 
 
 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/1u7B3ROAlS1Q6k5Wo8fZvY?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
