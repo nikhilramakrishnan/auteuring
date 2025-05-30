@@ -7,7 +7,7 @@ theme = 'hugo-book'
   BookToC = true
   BookDateFormat = 'Jan 2, 2006'
   BookSearch = true
-  BookSection = "docs"
+  BookSection = "/"
 
 [markup]
   [markup.tableOfContents]
