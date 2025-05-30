@@ -46,3 +46,30 @@ weight = 50
 <div class="live-info">
   live when streaming • offline otherwise
 </div>
+
+## past streams
+
+<style>
+.past-streams-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  margin-top: 2em;
+}
+
+.past-streams-container iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+</style>
+
+<div class="past-streams-container">
+  <!-- Shows all channel uploads as a playlist -->
+  <iframe src="https://www.youtube.com/embed/videoseries?list=UUYEDKvbtaaG8EZL-FcdVfqg" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+  </iframe>
+</div>
