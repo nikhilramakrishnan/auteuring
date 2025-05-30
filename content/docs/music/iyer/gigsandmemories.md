@@ -7,6 +7,15 @@ draft: false
 
 I've played a few shows over time, here's a list of some of the memorable ones. 
 
+## 2017 Shows
+
+### May 27th, 2017 - Sub City Drum & Bass
+- **Venue**: Piedra Negra (second floor), Singapore
+- **Event**: Revision Music's Sub City
+- **Time**: 10pm - 3am
+- **Lineup**: Iyer (headliner, Phyla co-founder), Senja, RAH, OMJ
+- **Details**: $10 at the door. Iyer's set featured traditional Indian rhythms within drum & bass, promising a distinctive approach to the genre.
+
 ## 2016 Shows
 
 ### July 2nd, 2016 - Rumpshakers presents: Amit + Compa
@@ -54,6 +63,25 @@ I've played a few shows over time, here's a list of some of the memorable ones.
 - **Details**: Part of the San Francisco electronic music scene connected to BREAD FM collective.
 
 
-[subcity](https://www.bandwagon.asia/articles/phyla-bossman-iyer-headlines-sub-city-s-next-drum-bass-rinse-out)
+## Background & Releases
 
-[text](https://www.thewildcity.com/mixes/3111-wild-city-092-iyer)
+### About Iyer
+Originally from Singapore, Iyer (Nikhil Ramakrishnan) moved to Toronto in 2012. He co-founded the Singapore-based label Phyla with Harv in early 2012, releasing diverse electronic music from Singapore and around the globe. Known for his footwork/juke production and incorporating his South Indian heritage through Tamil samples and traditional rhythms.
+
+### 2015 
+- **November 26, 2015** - Bedroomer Volume II Compilation
+  - Toronto electronic music collective Bedroomer's second compilation featuring uptempo, club-ready tracks influenced by Chicago footwork rhythms
+- **Get High EP** - Released on Phyla Digital
+  - Collection of uptempo tracks - originals and edits
+  - Released free as a thank you for 3 years of support
+
+### Notable Releases & Features
+- **April 22, 2015** - Wild City Mix #092
+  - High octane footwork mix featuring music from 8 countries: Malaysia, Singapore, India, US, Japan, Switzerland, Canada, and Poland
+- Featured in Toronto Spotlight on ohestee, discussing his journey from Singapore to Toronto and his work with Phyla label
+
+## Links & References
+
+[Sub City Singapore Show](https://www.bandwagon.asia/articles/phyla-bossman-iyer-headlines-sub-city-s-next-drum-bass-rinse-out)
+
+[Wild City Mix #092](https://www.thewildcity.com/mixes/3111-wild-city-092-iyer)
