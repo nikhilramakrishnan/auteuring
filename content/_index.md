@@ -11,5 +11,6 @@ Hello, I'm Nikhil. This is a personal space where engineering, filmmaking, and m
 - [track collection](/collection)  
 - [filmmaking](/filmmaking)
 - [dj sets and releases](/music/iyer)
+- [live stream](/live)
 
 Thanks for stopping by.
