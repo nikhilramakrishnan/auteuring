@@ -34,4 +34,9 @@ hugo -D
 Content follows Hugo's standard structure:
 - `_index.md` files define section landing pages
 - Regular `.md` files are individual pages
-- Sections can be nested (e.g., `content/docs/music/iyer/`)
+- Sections can be nested (e.g., `content/music/iyer/`)
+
+## Style Guide
+
+- Use lowercase for all titles and headings throughout the site
+- Keep content minimal and concise

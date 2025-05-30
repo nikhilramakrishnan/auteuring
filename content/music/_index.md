@@ -5,7 +5,7 @@ bookHidden = false
 weight = 20
 +++
 
-# Music
+# music
 
 I've spent a lot of time in and around music. My childhood involved brief periods of attempting to learn various intruments as well as vocal training, to no fruition. As any kid would attest, we can be troublesome learners. 
 

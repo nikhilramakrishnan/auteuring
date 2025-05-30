@@ -4,7 +4,7 @@ title = '1. engineering'
 bookHidden = false
 weight = 20
 +++
-# Engineering
+# engineering
 
 Software engineer based in San Francisco. I like building things that solve real problems.
 

@@ -3,9 +3,9 @@ title: "4. collection"
 weight: 40
 ---
 
-# Collection
+# collection
 
-A selection of tracks and experiments.
+a selection of tracks and experiments.
 
 <style>
 .tracks-table {
@@ -19,20 +19,21 @@ A selection of tracks and experiments.
 }
 
 .tracks-table td:first-child {
-  width: 60%;
+  width: 50%;
 }
 
 .tracks-table td:last-child {
-  width: 40%;
+  width: 50%;
 }
 
 .track-title {
   font-weight: normal;
+  font-size: 0.9em;
 }
 
 .track-info {
   color: #666;
-  font-size: 0.85em;
+  font-size: 0.8em;
 }
 
 .tracks-table audio {
@@ -61,7 +62,7 @@ A selection of tracks and experiments.
 <table class="tracks-table">
 <tr>
   <td>
-    <div class="track-title">Kaaris - Charge (Iyer Rework)</div>
+    <div class="track-title">kaaris - charge (iyer rework)</div>
     <div class="track-info">FTRAX003</div>
   </td>
   <td>
@@ -72,7 +73,7 @@ A selection of tracks and experiments.
 </tr>
 <tr>
   <td>
-    <div class="track-title">Alex Gaudino - Destination Calabria (Iyer Rework)</div>
+    <div class="track-title">alex gaudino - destination calabria (iyer rework)</div>
     <div class="track-info">FTRAX008</div>
   </td>
   <td>
@@ -83,7 +84,7 @@ A selection of tracks and experiments.
 </tr>
 <tr>
   <td>
-    <div class="track-title">The Weeknd and Future - Low Life (Iyer VIP)</div>
+    <div class="track-title">the weeknd and future - low life (iyer vip)</div>
     <div class="track-info">FTRAX028</div>
   </td>
   <td>
@@ -94,7 +95,7 @@ A selection of tracks and experiments.
 </tr>
 <tr>
   <td>
-    <div class="track-title">Alfred English - Mire (Iyer VIP)</div>
+    <div class="track-title">alfred english - mire (iyer vip)</div>
     <div class="track-info">FTRAX035</div>
   </td>
   <td>
@@ -105,7 +106,7 @@ A selection of tracks and experiments.
 </tr>
 <tr>
   <td>
-    <div class="track-title">Tre Mission - Gang (iyer edit)</div>
+    <div class="track-title">tre mission - gang (iyer edit)</div>
     <div class="track-info">FTRAX041</div>
   </td>
   <td>
@@ -116,7 +117,7 @@ A selection of tracks and experiments.
 </tr>
 <tr>
   <td>
-    <div class="track-title">Sir Spyro - Topper Top (Iyer Remix)</div>
+    <div class="track-title">sir spyro - topper top (iyer remix)</div>
     <div class="track-info">FTRAX049</div>
   </td>
   <td>
@@ -127,7 +128,7 @@ A selection of tracks and experiments.
 </tr>
 <tr>
   <td>
-    <div class="track-title">Amir Obe - Wish U Well (iyer Remix)</div>
+    <div class="track-title">amir obe - wish u well (iyer remix)</div>
     <div class="track-info">FTRAX053</div>
   </td>
   <td>
@@ -138,7 +139,7 @@ A selection of tracks and experiments.
 </tr>
 <tr>
   <td>
-    <div class="track-title">GOTH TRAD - SEEKER (IYER REMIX)</div>
+    <div class="track-title">goth trad - seeker (iyer remix)</div>
     <div class="track-info">FTRAX057</div>
   </td>
   <td>

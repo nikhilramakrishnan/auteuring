@@ -4,7 +4,7 @@ title = '3. filmmaking'
 bookHidden = false
 weight = 20
 +++
-# Filmmaking
+# filmmaking
 
 I'm a film enthusiast and a willing learner. I'm enthusiastic about exposing the flavor and motives of world cinema to more audiences. 
 
