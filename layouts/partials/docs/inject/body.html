@@ -3,8 +3,8 @@
   // Check if system prefers dark mode
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   
-  // Check for saved theme preference
-  const savedTheme = localStorage.getItem('theme-override');
+  // Check for saved theme preference (session only)
+  const savedTheme = sessionStorage.getItem('theme-override');
   
   // Function to apply theme
   function applyTheme(theme) {
@@ -36,7 +36,7 @@
         
         const newTheme = isDark ? 'light' : 'dark';
         
-        localStorage.setItem('theme-override', newTheme);
+        sessionStorage.setItem('theme-override', newTheme);
         applyTheme(newTheme);
       });
     });
