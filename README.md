@@ -1,5 +1,7 @@
 ### Seeing the website
-`hugo serve`
+`hugo serve` for local
+
+[auteur.ing](https://auteur.ing) is the URL where I host this
 ### What is Auteuring? 
 
 Auteur: an artist (such as a musician or writer) whose style and practice are distinctive (Merriam-Webster)
