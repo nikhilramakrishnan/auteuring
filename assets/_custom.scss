@@ -2,22 +2,20 @@
 
 // Force dark theme when theme-dark class is present
 .theme-dark {
-  @media (prefers-color-scheme: light) {
-    color-scheme: dark;
-    
-    // These variables are from hugo-book theme
-    --body-background: #343a40;
-    --body-font-color: #e9ecef;
-    --gray-100: #f8f9fa;
-    --gray-200: #e9ecef;
-    --gray-500: #adb5bd;
-    --color-link: #84b2ff;
-    --color-visited-link: #b88dff;
-    --icon-filter: brightness(0) invert(1);
-    
-    background-color: var(--body-background);
-    color: var(--body-font-color);
-  }
+  color-scheme: dark;
+  
+  // Cold, terminal-inspired dark theme
+  --body-background: #000000;
+  --body-font-color: #e0e0e0;
+  --gray-100: #1a1a1a;
+  --gray-200: #2a2a2a;
+  --gray-500: #666666;
+  --color-link: #00ff88;
+  --color-visited-link: #00ff88;
+  --icon-filter: brightness(0) invert(1);
+  
+  background-color: var(--body-background);
+  color: var(--body-font-color);
 }
 
 // Force light theme when theme-light class is present
@@ -37,6 +35,19 @@
     
     background-color: var(--body-background);
     color: var(--body-font-color);
+  }
+}
+
+// Apply terminal theme to auto dark mode
+@media (prefers-color-scheme: dark) {
+  :root:not(.theme-light) {
+    --body-background: #000000;
+    --body-font-color: #e0e0e0;
+    --gray-100: #1a1a1a;
+    --gray-200: #2a2a2a;
+    --gray-500: #666666;
+    --color-link: #00ff88;
+    --color-visited-link: #00ff88;
   }
 }
 
