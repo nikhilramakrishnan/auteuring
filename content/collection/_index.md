@@ -11,6 +11,7 @@ a selection of tracks and experiments.
 .music-player {
   max-width: 100%;
   margin: 2em 0;
+  padding-left: 0;
 }
 
 .player-controls {
@@ -75,7 +76,9 @@ a selection of tracks and experiments.
 .track-list {
   list-style: none;
   padding: 0;
+  padding-left: 0 !important;
   margin: 0;
+  margin-left: 0 !important;
 }
 
 .track-item {
