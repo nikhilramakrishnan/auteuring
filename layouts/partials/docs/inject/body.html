@@ -1,0 +1,45 @@
+<script>
+(function() {
+  // Check if system prefers dark mode
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  // Check for saved theme preference
+  const savedTheme = localStorage.getItem('theme-override');
+  
+  // Function to apply theme
+  function applyTheme(theme) {
+    // Remove all theme classes
+    document.documentElement.classList.remove('theme-light', 'theme-dark');
+    
+    if (theme === 'dark') {
+      document.documentElement.classList.add('theme-dark');
+    } else if (theme === 'light') {
+      document.documentElement.classList.add('theme-light');
+    }
+    // If no theme or 'auto', the CSS will use prefers-color-scheme
+  }
+  
+  // Apply saved theme on load
+  if (savedTheme) {
+    applyTheme(savedTheme);
+  }
+  
+  // Theme toggle button functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    // Find all theme toggle buttons
+    const toggles = document.querySelectorAll('#theme-toggle, #theme-toggle-sidebar');
+    
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', function() {
+        const isDark = document.documentElement.classList.contains('theme-dark') || 
+                      (!document.documentElement.classList.contains('theme-light') && prefersDark);
+        
+        const newTheme = isDark ? 'light' : 'dark';
+        
+        localStorage.setItem('theme-override', newTheme);
+        applyTheme(newTheme);
+      });
+    });
+  });
+})();
+</script>

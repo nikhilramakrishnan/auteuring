@@ -1,0 +1,39 @@
+/* Theme overrides when toggle is used */
+
+// Force dark theme when theme-dark class is present
+.theme-dark {
+  @media (prefers-color-scheme: light) {
+    color-scheme: dark;
+    
+    // These variables are from hugo-book theme
+    --body-background: #343a40;
+    --body-font-color: #e9ecef;
+    --gray-100: #f8f9fa;
+    --gray-200: #e9ecef;
+    --gray-500: #adb5bd;
+    --color-link: #84b2ff;
+    --color-visited-link: #b88dff;
+    
+    background-color: var(--body-background);
+    color: var(--body-font-color);
+  }
+}
+
+// Force light theme when theme-light class is present
+.theme-light {
+  @media (prefers-color-scheme: dark) {
+    color-scheme: light;
+    
+    // These variables are from hugo-book theme
+    --body-background: white;
+    --body-font-color: black;
+    --gray-100: rgba(0, 0, 0, 0.1);
+    --gray-200: rgba(0, 0, 0, 0.2);
+    --gray-500: rgba(0, 0, 0, 0.5);
+    --color-link: #05b;
+    --color-visited-link: #8440f1;
+    
+    background-color: var(--body-background);
+    color: var(--body-font-color);
+  }
+}

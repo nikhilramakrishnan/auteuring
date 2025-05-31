@@ -93,7 +93,11 @@ a selection of tracks and experiments.
 }
 
 .track-item.active {
-  background: rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.track-item.active:hover {
+  background: rgba(0, 0, 0, 0.02);
 }
 
 .track-item:last-child {
@@ -134,7 +138,11 @@ a selection of tracks and experiments.
   }
   
   .track-item.active {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+  }
+  
+  .track-item.active:hover {
+    background: rgba(255, 255, 255, 0.03);
   }
   
   .play-button {
