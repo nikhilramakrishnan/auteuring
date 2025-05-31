@@ -40,6 +40,11 @@ a selection of tracks and experiments.
   justify-content: center;
   width: 28px;
   height: 28px;
+  outline: none;
+}
+
+.control-button:focus {
+  outline: none;
 }
 
 .control-button:first-child {
