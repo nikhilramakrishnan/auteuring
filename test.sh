@@ -55,7 +55,7 @@ echo -n "  → Looking for track list... "
 grep -q "track-list" "public/collection/index.html" || { echo "✗ Not found"; exit 1; }
 echo "✓"
 echo -n "  → Counting tracks... "
-track_count=$(grep -c "track-item" "public/collection/index.html" || true)
+track_count=$(grep -c '<li class="track-item"' "public/collection/index.html" || true)
 echo "✓ Found $track_count tracks"
 echo ""
 
