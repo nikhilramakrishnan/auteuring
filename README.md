@@ -13,7 +13,7 @@ I use Hugo since I wanted a static website by design. Unfortunately, custom func
 
 There is a challenge only writing in the terminal though. Code review is a lot harder - so if I’m writing either redundant or ineffective code, it’s hard to notice. I’ve done my best to keep my additions incremental and you can see the story of the evolution of this code through the commit messages. 
 
-So there is a story behind the code, just as is a story behind the person who wrote this code. For a long time, I thought being private meant being humble, but as I get older, I feel an innate responsibility to start leaving behind these capsules of that I can build on. 
+So there is a story behind the code, just as is a story behind the person who wrote this code. For a long time, I thought being private meant being humble, but as I get older, I feel an innate responsibility to start leaving behind these capsules that I can build on. 
 
 I’m older now, perhaps a little wiser, and I definitely have some form of main character syndrome. I’ve had a lot to learn, but I’ve also given a lot of myself to my passions, and as you read through my story, I hope you are able to learn a little bit more about me. Thanks. 
 
