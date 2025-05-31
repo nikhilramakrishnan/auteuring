@@ -22,18 +22,27 @@ a selection of tracks and experiments.
   flex-wrap: wrap;
 }
 
-.play-button {
+.control-button {
   background: none;
   border: 1px solid #666;
-  padding: 0.5em 1.5em;
+  padding: 0.5em 1em;
   cursor: pointer;
   font-size: 0.9em;
-  min-width: 80px;
   color: #999;
 }
 
-.play-button:hover {
+.play-button {
+  min-width: 80px;
+  padding: 0.5em 1.5em;
+}
+
+.control-button:hover {
   background: rgba(0, 0, 0, 0.03);
+}
+
+.control-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
 .current-track {
@@ -148,13 +157,17 @@ a selection of tracks and experiments.
     background: rgba(255, 255, 255, 0.03);
   }
   
-  .play-button {
+  .control-button {
     border-color: #999;
     color: #999;
   }
   
-  .play-button:hover {
+  .control-button:hover {
     background: rgba(255, 255, 255, 0.05);
+  }
+  
+  .control-button:disabled {
+    opacity: 0.3;
   }
   
   .progress-bar {
@@ -169,7 +182,9 @@ a selection of tracks and experiments.
 
 <div class="music-player">
   <div class="player-controls">
-    <button class="play-button" id="playButton">play</button>
+    <button class="control-button" id="prevButton">prev</button>
+    <button class="control-button play-button" id="playButton">play</button>
+    <button class="control-button" id="nextButton">next</button>
     <div class="current-track">
       <div class="track-title" id="currentTitle">select a track</div>
       <div class="track-info" id="currentInfo"></div>
@@ -245,6 +260,8 @@ a selection of tracks and experiments.
 <script>
 const audio = new Audio();
 const playButton = document.getElementById('playButton');
+const prevButton = document.getElementById('prevButton');
+const nextButton = document.getElementById('nextButton');
 const currentTitle = document.getElementById('currentTitle');
 const currentInfo = document.getElementById('currentInfo');
 const progressBar = document.getElementById('progressBar');
@@ -283,6 +300,10 @@ function loadTrack(index) {
   // Load audio
   audio.src = src;
   currentTrackIndex = index;
+  
+  // Update button states
+  prevButton.disabled = index === 0;
+  nextButton.disabled = index === trackItems.length - 1;
   
   // Auto play if already playing
   if (isPlaying) {
@@ -350,4 +371,28 @@ audio.addEventListener('error', () => {
   playButton.textContent = 'play';
   isPlaying = false;
 });
+
+// Previous button
+prevButton.addEventListener('click', () => {
+  if (currentTrackIndex > 0) {
+    loadTrack(currentTrackIndex - 1);
+    if (isPlaying) {
+      audio.play();
+    }
+  }
+});
+
+// Next button
+nextButton.addEventListener('click', () => {
+  if (currentTrackIndex < trackItems.length - 1) {
+    loadTrack(currentTrackIndex + 1);
+    if (isPlaying) {
+      audio.play();
+    }
+  }
+});
+
+// Initialize button states
+prevButton.disabled = true;
+nextButton.disabled = true;
 </script>
