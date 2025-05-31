@@ -4,7 +4,7 @@
     <img src="{{ "svg/menu.svg" | relURL }}" class="book-icon" alt="Menu" />
   </label>
 
-  <h3>{{ partial "docs/title" . }}</h3>
+  <h3>{{ .Site.Title }}</h3>
 
   <div class="flex align-center">
     <button id="theme-toggle" class="book-icon" title="Toggle theme" style="background: none; border: none; cursor: pointer; padding: 0; margin-right: 0.5rem; display: flex; align-items: center;">
