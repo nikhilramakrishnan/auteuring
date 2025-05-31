@@ -54,8 +54,8 @@ a selection of tracks and experiments.
   height: 16px;
 }
 
-.control-button:hover {
-  background: rgba(0, 0, 0, 0.05);
+.control-button:hover:not(:disabled) {
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
 }
 
@@ -120,7 +120,7 @@ a selection of tracks and experiments.
 }
 
 .track-item:hover {
-  background: rgba(0, 0, 0, 0.02);
+  background: rgba(0, 0, 0, 0.06);
 }
 
 .track-item.active {
@@ -128,7 +128,7 @@ a selection of tracks and experiments.
 }
 
 .track-item.active:hover {
-  background: rgba(0, 0, 0, 0.02);
+  background: rgba(0, 0, 0, 0.06);
 }
 
 .track-item:last-child {
@@ -165,7 +165,7 @@ a selection of tracks and experiments.
   }
   
   .track-item:hover {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.08);
   }
   
   .track-item.active {
@@ -173,11 +173,15 @@ a selection of tracks and experiments.
   }
   
   .track-item.active:hover {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.08);
   }
   
   .control-button:hover {
     background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .control-button:disabled {
+    opacity: 0.3;
   }
   
   .progress-bar {
