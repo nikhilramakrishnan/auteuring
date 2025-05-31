@@ -29,7 +29,7 @@ a selection of tracks and experiments.
   display: flex;
   align-items: center;
   gap: 0.25em;
-  margin-left: -4px;
+  margin-left: -0.25em;
 }
 
 .control-button {
@@ -43,6 +43,10 @@ a selection of tracks and experiments.
   justify-content: center;
   width: 28px;
   height: 28px;
+}
+
+.control-button:first-child {
+  padding-left: 0;
 }
 
 .control-button svg {
