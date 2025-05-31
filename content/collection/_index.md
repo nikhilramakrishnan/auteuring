@@ -29,6 +29,7 @@ a selection of tracks and experiments.
   display: flex;
   align-items: center;
   gap: 0.25em;
+  margin-left: -4px;
 }
 
 .control-button {
