@@ -1,0 +1,33 @@
+name: Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: true  # Fetch Hugo themes
+        fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+    
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: 'latest'
+        extended: true
+    
+    - name: Run tests
+      run: ./test.sh
+    
+    - name: Upload public directory as artifact
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: public
+        path: public/
