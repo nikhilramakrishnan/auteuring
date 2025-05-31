@@ -13,6 +13,7 @@
     --gray-500: #adb5bd;
     --color-link: #84b2ff;
     --color-visited-link: #b88dff;
+    --icon-filter: brightness(0) invert(1);
     
     background-color: var(--body-background);
     color: var(--body-font-color);
@@ -32,8 +33,29 @@
     --gray-500: rgba(0, 0, 0, 0.5);
     --color-link: #05b;
     --color-visited-link: #8440f1;
+    --icon-filter: none;
     
     background-color: var(--body-background);
     color: var(--body-font-color);
+  }
+}
+
+// Fix mobile header icon colors
+@media screen and (max-width: 56rem) {
+  // Ensure header icons are visible in light mode
+  .book-header {
+    --icon-filter: none;
+  }
+  
+  // In dark mode, make header icons white
+  .theme-dark .book-header {
+    --icon-filter: brightness(0) invert(1);
+  }
+  
+  // When system prefers dark and no override
+  @media (prefers-color-scheme: dark) {
+    html:not(.theme-light) .book-header {
+      --icon-filter: brightness(0) invert(1);
+    }
   }
 }
