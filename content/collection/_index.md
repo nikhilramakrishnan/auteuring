@@ -14,9 +14,6 @@ a selection of tracks and experiments.
   padding-left: 0;
 }
 
-.now-playing {
-  margin-bottom: 1.5em;
-}
 
 .player-controls {
   display: flex;
@@ -69,10 +66,6 @@ a selection of tracks and experiments.
   color: #666;
 }
 
-.current-track {
-  flex: 1;
-  min-width: 200px;
-}
 
 .track-title {
   font-weight: normal;
@@ -125,6 +118,17 @@ a selection of tracks and experiments.
 
 .track-item.active {
   background: rgba(0, 0, 0, 0.02);
+}
+
+/* Light mode active track */
+@media (prefers-color-scheme: light) {
+  .track-item.active .track-title {
+    color: #0066cc;
+  }
+}
+
+.theme-light .track-item.active .track-title {
+  color: #0066cc;
 }
 
 .track-item.active:hover {
@@ -184,6 +188,10 @@ a selection of tracks and experiments.
     opacity: 0.3;
   }
   
+  .track-item.active .track-title {
+    color: #00ff88;
+  }
+  
   .progress-bar {
     background: #2a2a2a;
   }
@@ -195,11 +203,6 @@ a selection of tracks and experiments.
 </style>
 
 <div class="music-player">
-  <div class="now-playing">
-    <div class="track-title" id="currentTitle">select a track</div>
-    <div class="track-info" id="currentInfo"></div>
-  </div>
-  
   <div class="progress-bar" id="progressBar">
     <div class="progress" id="progress"></div>
   </div>
@@ -225,6 +228,13 @@ a selection of tracks and experiments.
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polygon points="5 4 15 12 5 20 5 4"></polygon>
           <line x1="19" y1="5" x2="19" y2="19"></line>
+        </svg>
+      </button>
+      <button class="control-button" id="downloadButton" title="Download current track">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
         </svg>
       </button>
     </div>
@@ -296,8 +306,7 @@ const audio = new Audio();
 const playButton = document.getElementById('playButton');
 const prevButton = document.getElementById('prevButton');
 const nextButton = document.getElementById('nextButton');
-const currentTitle = document.getElementById('currentTitle');
-const currentInfo = document.getElementById('currentInfo');
+const downloadButton = document.getElementById('downloadButton');
 const progressBar = document.getElementById('progressBar');
 const progress = document.getElementById('progress');
 const timeDisplay = document.getElementById('timeDisplay');
@@ -323,10 +332,6 @@ function loadTrack(index) {
   const title = track.dataset.title;
   const info = track.dataset.info;
   
-  // Update UI
-  currentTitle.textContent = title;
-  currentInfo.textContent = info;
-  
   // Update active state
   trackItems.forEach(item => item.classList.remove('active'));
   track.classList.add('active');
@@ -338,6 +343,7 @@ function loadTrack(index) {
   // Update button states
   prevButton.disabled = index === 0;
   nextButton.disabled = index === trackItems.length - 1;
+  downloadButton.disabled = false;
   
   // Auto play if already playing
   if (isPlaying) {
@@ -414,7 +420,6 @@ audio.addEventListener('ended', () => {
 
 // Handle loading errors
 audio.addEventListener('error', () => {
-  currentTitle.textContent = 'error loading track';
   isPlaying = false;
   updatePlayPauseIcon();
 });
@@ -442,4 +447,23 @@ nextButton.addEventListener('click', () => {
 // Initialize button states
 prevButton.disabled = true;
 nextButton.disabled = true;
+downloadButton.disabled = true;
+
+// Download button
+downloadButton.addEventListener('click', () => {
+  if (currentTrackIndex >= 0) {
+    const track = trackItems[currentTrackIndex];
+    const src = track.dataset.src;
+    const title = track.dataset.title;
+    const info = track.dataset.info;
+    
+    // Create a temporary link and trigger download
+    const a = document.createElement('a');
+    a.href = src;
+    a.download = `${info} ${title}.mp3`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+});
 </script>
