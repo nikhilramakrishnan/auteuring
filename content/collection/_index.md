@@ -14,35 +14,54 @@ a selection of tracks and experiments.
   padding-left: 0;
 }
 
+.now-playing {
+  margin-bottom: 1.5em;
+}
+
 .player-controls {
   display: flex;
   align-items: center;
-  gap: 1em;
-  margin-bottom: 1.5em;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.control-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
 }
 
 .control-button {
   background: none;
-  border: 1px solid #666;
-  padding: 0.5em 1em;
+  border: none;
+  padding: 0.25em;
   cursor: pointer;
-  font-size: 0.9em;
-  color: #999;
+  color: var(--body-font-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
 }
 
-.play-button {
-  min-width: 80px;
-  padding: 0.5em 1.5em;
+.control-button svg {
+  width: 16px;
+  height: 16px;
 }
 
 .control-button:hover {
-  background: rgba(0, 0, 0, 0.03);
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
 }
 
 .control-button:disabled {
   opacity: 0.3;
   cursor: not-allowed;
+}
+
+.time-display {
+  font-size: 0.8em;
+  color: #666;
 }
 
 .current-track {
@@ -76,11 +95,6 @@ a selection of tracks and experiments.
   transition: width 0.1s;
 }
 
-.time-display {
-  font-size: 0.8em;
-  color: #666;
-  margin-bottom: 1.5em;
-}
 
 .track-list {
   list-style: none;
@@ -157,17 +171,8 @@ a selection of tracks and experiments.
     background: rgba(255, 255, 255, 0.03);
   }
   
-  .control-button {
-    border-color: #999;
-    color: #999;
-  }
-  
   .control-button:hover {
-    background: rgba(255, 255, 255, 0.05);
-  }
-  
-  .control-button:disabled {
-    opacity: 0.3;
+    background: rgba(255, 255, 255, 0.1);
   }
   
   .progress-bar {
@@ -181,21 +186,41 @@ a selection of tracks and experiments.
 </style>
 
 <div class="music-player">
-  <div class="player-controls">
-    <button class="control-button" id="prevButton">prev</button>
-    <button class="control-button play-button" id="playButton">play</button>
-    <button class="control-button" id="nextButton">next</button>
-    <div class="current-track">
-      <div class="track-title" id="currentTitle">select a track</div>
-      <div class="track-info" id="currentInfo"></div>
-    </div>
+  <div class="now-playing">
+    <div class="track-title" id="currentTitle">select a track</div>
+    <div class="track-info" id="currentInfo"></div>
   </div>
   
   <div class="progress-bar" id="progressBar">
     <div class="progress" id="progress"></div>
   </div>
   
-  <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
+  <div class="player-controls">
+    <div class="control-buttons">
+      <button class="control-button" id="prevButton" title="Previous track">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="19 20 9 12 19 4 19 20"></polygon>
+          <line x1="5" y1="19" x2="5" y2="5"></line>
+        </svg>
+      </button>
+      <button class="control-button" id="playButton" title="Play/Pause">
+        <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+        <svg class="pause-icon" style="display: none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="6" y="4" width="4" height="16"></rect>
+          <rect x="14" y="4" width="4" height="16"></rect>
+        </svg>
+      </button>
+      <button class="control-button" id="nextButton" title="Next track">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="5 4 15 12 5 20 5 4"></polygon>
+          <line x1="19" y1="5" x2="19" y2="19"></line>
+        </svg>
+      </button>
+    </div>
+    <span class="time-display" id="timeDisplay">0:00 / 0:00</span>
+  </div>
   
   <ul class="track-list" id="trackList">
     <li class="track-item" data-src="https://tracks.auteur.ing/file/auteuring/FTRAX003%20Kaaris%20-%20Charge%20(Iyer%20Rework).mp3" data-title="kaaris - charge (iyer rework)" data-info="FTRAX003">
@@ -311,6 +336,20 @@ function loadTrack(index) {
   }
 }
 
+// Update play/pause icon
+function updatePlayPauseIcon() {
+  const playIcon = playButton.querySelector('.play-icon');
+  const pauseIcon = playButton.querySelector('.pause-icon');
+  
+  if (isPlaying) {
+    playIcon.style.display = 'none';
+    pauseIcon.style.display = 'block';
+  } else {
+    playIcon.style.display = 'block';
+    pauseIcon.style.display = 'none';
+  }
+}
+
 // Play/pause toggle
 playButton.addEventListener('click', () => {
   if (currentTrackIndex === -1) {
@@ -319,13 +358,12 @@ playButton.addEventListener('click', () => {
   
   if (isPlaying) {
     audio.pause();
-    playButton.textContent = 'play';
     isPlaying = false;
   } else {
     audio.play();
-    playButton.textContent = 'pause';
     isPlaying = true;
   }
+  updatePlayPauseIcon();
 });
 
 // Track click handler
@@ -333,8 +371,8 @@ trackItems.forEach((track, index) => {
   track.addEventListener('click', () => {
     loadTrack(index);
     audio.play();
-    playButton.textContent = 'pause';
     isPlaying = true;
+    updatePlayPauseIcon();
   });
 });
 
@@ -360,16 +398,16 @@ audio.addEventListener('ended', () => {
     loadTrack(currentTrackIndex + 1);
     audio.play();
   } else {
-    playButton.textContent = 'play';
     isPlaying = false;
+    updatePlayPauseIcon();
   }
 });
 
 // Handle loading errors
 audio.addEventListener('error', () => {
   currentTitle.textContent = 'error loading track';
-  playButton.textContent = 'play';
   isPlaying = false;
+  updatePlayPauseIcon();
 });
 
 // Previous button
