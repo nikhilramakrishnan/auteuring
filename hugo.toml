@@ -21,6 +21,6 @@ theme = 'hugo-book'
 
 [menu]
 [[menu.after]]
-  name = "kural"
+  name = "குரல் (kural)"
   url = "https://kural.auteur.ing"
   weight = 10 
