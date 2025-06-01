@@ -17,4 +17,10 @@ theme = 'hugo-book'
     startLevel = 1
 
   [markup.goldmark.renderer]
-  unsafe = true 
+  unsafe = true
+
+[menu]
+[[menu.after]]
+  name = "kural"
+  url = "https://kural.auteur.ing"
+  weight = 10 
