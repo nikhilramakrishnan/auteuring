@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MusicPlayer from '../components/MusicPlayer.astro';
+
+const tracks = [
+  {
+    src: "https://tracks.auteur.ing/file/auteuring/FTRAX003%20Kaaris%20-%20Charge%20(Iyer%20Rework).mp3",
+    title: "kaaris - charge (iyer rework)",
+    info: "FTRAX003"
+  },
+  {
+    src: "https://tracks.auteur.ing/file/auteuring/FTRAX008%20Alex%20Gaudino%20-%20Destination%20Calabria%20(Iyer%20Rework).mp3",
+    title: "alex gaudino - destination calabria (iyer rework)",
+    info: "FTRAX008"
+  },
+  {
+    src: "https://tracks.auteur.ing/file/auteuring/FTRAX028%20The%20Weeknd%20and%20Future%20-%20Low%20Life%20(Iyer%20VIP).mp3",
+    title: "the weeknd and future - low life (iyer vip)",
+    info: "FTRAX028"
+  },
+  {
+    src: "https://tracks.auteur.ing/file/auteuring/FTRAX035%20Alfred%20English%20-%20Mire%20(Iyer%20VIP).mp3",
+    title: "alfred english - mire (iyer vip)",
+    info: "FTRAX035"
+  },
+  {
+    src: "https://tracks.auteur.ing/file/auteuring/FTRAX041%20Tre%20Mission%20-%20Gang%20(iyer%20edit).mp3",
+    title: "tre mission - gang (iyer edit)",
+    info: "FTRAX041"
+  },
+  {
+    src: "https://tracks.auteur.ing/file/auteuring/FTRAX049%20Sir%20Spyro%20-%20Topper%20Top%20(Iyer%20Remix).mp3",
+    title: "sir spyro - topper top (iyer remix)",
+    info: "FTRAX049"
+  },
+  {
+    src: "https://tracks.auteur.ing/file/auteuring/FTRAX053%20Amir%20Obe%20-%20Wish%20U%20Well%20(iyer%20Remix).mp3",
+    title: "amir obe - wish u well (iyer remix)",
+    info: "FTRAX053"
+  },
+  {
+    src: "https://tracks.auteur.ing/file/auteuring/FTRAX057%20GOTH%20TRAD%20-%20SEEKER%20(IYER%20REMIX).mp3",
+    title: "goth trad - seeker (iyer remix)",
+    info: "FTRAX057"
+  }
+];
+---
+
+<BaseLayout title="collection">
+  <h1>collection</h1>
+
+  <p>a selection of tracks and experiments.</p>
+
+  <MusicPlayer tracks={tracks} />
+</BaseLayout>

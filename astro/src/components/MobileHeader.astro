@@ -1,0 +1,54 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+---
+
+<header class="mobile-header fixed top-0 left-0 right-0 h-14 border-b border-[var(--gray-100)] bg-[var(--background)] z-40 flex items-center justify-between px-4 md:hidden">
+  <button
+    id="menu-toggle"
+    type="button"
+    aria-label="Toggle menu"
+    class="p-2 -ml-2 rounded-lg hover:bg-[var(--gray-100)] transition-colors"
+  >
+    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button>
+
+  <a href="/" class="font-medium">auteuring</a>
+
+  <ThemeToggle />
+</header>
+
+<!-- Backdrop for mobile menu -->
+<div id="menu-backdrop" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden"></div>
+
+<script>
+  function initMobileMenu() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    const backdrop = document.getElementById('menu-backdrop');
+
+    function toggleMenu() {
+      sidebar?.classList.toggle('open');
+      backdrop?.classList.toggle('hidden');
+      document.body.classList.toggle('overflow-hidden');
+    }
+
+    function closeMenu() {
+      sidebar?.classList.remove('open');
+      backdrop?.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    menuToggle?.addEventListener('click', toggleMenu);
+    backdrop?.addEventListener('click', closeMenu);
+
+    // Close menu on navigation
+    sidebar?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+  }
+
+  initMobileMenu();
+  document.addEventListener('astro:after-swap', initMobileMenu);
+</script>

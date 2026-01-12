@@ -1,0 +1,312 @@
+---
+interface Track {
+  src: string;
+  title: string;
+  info: string;
+}
+
+interface Props {
+  tracks: Track[];
+}
+
+const { tracks } = Astro.props;
+---
+
+<div class="music-player">
+  <div class="progress-bar" id="progressBar">
+    <div class="progress" id="progress"></div>
+  </div>
+
+  <div class="player-controls">
+    <div class="control-buttons">
+      <button class="control-button" id="prevButton" title="Previous track" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="19 20 9 12 19 4 19 20"></polygon>
+          <line x1="5" y1="19" x2="5" y2="5"></line>
+        </svg>
+      </button>
+      <button class="control-button" id="playButton" title="Play/Pause">
+        <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+        <svg class="pause-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="6" y="4" width="4" height="16"></rect>
+          <rect x="14" y="4" width="4" height="16"></rect>
+        </svg>
+      </button>
+      <button class="control-button" id="nextButton" title="Next track" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="5 4 15 12 5 20 5 4"></polygon>
+          <line x1="19" y1="5" x2="19" y2="19"></line>
+        </svg>
+      </button>
+      <button class="control-button" id="downloadButton" title="Download current track" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+      </button>
+    </div>
+    <span class="time-display" id="timeDisplay">0:00 / 0:00</span>
+  </div>
+
+  <ul class="track-list" id="trackList">
+    {tracks.map((track) => (
+      <li class="track-item" data-src={track.src} data-title={track.title} data-info={track.info}>
+        <div>
+          <div class="track-title">{track.title}</div>
+          <div class="track-info">{track.info}</div>
+        </div>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style>
+  .music-player {
+    max-width: 100%;
+    margin: 2em 0;
+  }
+
+  .player-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1em;
+  }
+
+  .control-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.25em;
+  }
+
+  .control-button {
+    background: none;
+    border: none;
+    padding: 0.5em;
+    cursor: pointer;
+    color: var(--foreground);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    transition: background-color 0.15s ease;
+  }
+
+  .control-button:hover:not(:disabled) {
+    background-color: var(--gray-100);
+  }
+
+  .control-button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .control-button svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .time-display {
+    font-size: 0.85em;
+    color: var(--gray-500);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 4px;
+    background: var(--gray-100);
+    margin: 1em 0;
+    cursor: pointer;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress {
+    height: 100%;
+    background: var(--gray-500);
+    width: 0;
+    transition: width 0.1s linear;
+  }
+
+  .track-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .track-item {
+    padding: 0.75em 0.5em;
+    border-bottom: 1px solid var(--gray-100);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.15s ease;
+    border-radius: 4px;
+    margin: 0 -0.5em;
+  }
+
+  .track-item:hover {
+    background-color: var(--gray-100);
+  }
+
+  .track-item.active {
+    background-color: var(--gray-100);
+  }
+
+  .track-item.active .track-title {
+    color: var(--link);
+  }
+
+  .track-item:last-child {
+    border-bottom: none;
+  }
+
+  .track-title {
+    font-size: 0.95em;
+    transition: color 0.15s ease;
+  }
+
+  .track-info {
+    color: var(--gray-500);
+    font-size: 0.8em;
+    margin-top: 0.25em;
+  }
+</style>
+
+<script>
+  function initMusicPlayer() {
+    const audio = new Audio();
+    const playButton = document.getElementById('playButton');
+    const prevButton = document.getElementById('prevButton');
+    const nextButton = document.getElementById('nextButton');
+    const downloadButton = document.getElementById('downloadButton');
+    const progressBar = document.getElementById('progressBar');
+    const progress = document.getElementById('progress');
+    const timeDisplay = document.getElementById('timeDisplay');
+    const trackItems = document.querySelectorAll('.track-item');
+
+    if (!playButton || !trackItems.length) return;
+
+    let currentTrackIndex = -1;
+    let isPlaying = false;
+
+    function formatTime(seconds: number) {
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    function updatePlayPauseIcon() {
+      const playIcon = playButton?.querySelector('.play-icon');
+      const pauseIcon = playButton?.querySelector('.pause-icon');
+      playIcon?.classList.toggle('hidden', isPlaying);
+      pauseIcon?.classList.toggle('hidden', !isPlaying);
+    }
+
+    function loadTrack(index: number) {
+      if (index < 0 || index >= trackItems.length) return;
+
+      const track = trackItems[index] as HTMLElement;
+      const src = track.dataset.src;
+
+      trackItems.forEach(item => item.classList.remove('active'));
+      track.classList.add('active');
+
+      if (src) audio.src = src;
+      currentTrackIndex = index;
+
+      if (prevButton) prevButton.disabled = index === 0;
+      if (nextButton) nextButton.disabled = index === trackItems.length - 1;
+      if (downloadButton) downloadButton.disabled = false;
+
+      if (isPlaying) audio.play();
+    }
+
+    playButton?.addEventListener('click', () => {
+      if (currentTrackIndex === -1) loadTrack(0);
+
+      if (isPlaying) {
+        audio.pause();
+        isPlaying = false;
+      } else {
+        audio.play();
+        isPlaying = true;
+      }
+      updatePlayPauseIcon();
+    });
+
+    trackItems.forEach((track, index) => {
+      track.addEventListener('click', () => {
+        loadTrack(index);
+        audio.play();
+        isPlaying = true;
+        updatePlayPauseIcon();
+      });
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      const percent = (audio.currentTime / audio.duration) * 100;
+      if (progress) progress.style.width = percent + '%';
+      if (timeDisplay) {
+        timeDisplay.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration || 0)}`;
+      }
+    });
+
+    progressBar?.addEventListener('click', (e: MouseEvent) => {
+      if (audio.duration && progressBar) {
+        const percent = e.offsetX / progressBar.offsetWidth;
+        audio.currentTime = percent * audio.duration;
+      }
+    });
+
+    audio.addEventListener('ended', () => {
+      if (currentTrackIndex < trackItems.length - 1) {
+        loadTrack(currentTrackIndex + 1);
+        audio.play();
+      } else {
+        isPlaying = false;
+        updatePlayPauseIcon();
+      }
+    });
+
+    prevButton?.addEventListener('click', () => {
+      if (currentTrackIndex > 0) loadTrack(currentTrackIndex - 1);
+    });
+
+    nextButton?.addEventListener('click', () => {
+      if (currentTrackIndex < trackItems.length - 1) loadTrack(currentTrackIndex + 1);
+    });
+
+    downloadButton?.addEventListener('click', () => {
+      if (currentTrackIndex >= 0) {
+        const track = trackItems[currentTrackIndex] as HTMLElement;
+        const src = track.dataset.src;
+        const title = track.dataset.title;
+        const info = track.dataset.info;
+
+        if (src) {
+          const a = document.createElement('a');
+          a.href = src;
+          a.download = `${info} ${title}.mp3`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        }
+      }
+    });
+  }
+
+  initMusicPlayer();
+  document.addEventListener('astro:after-swap', initMusicPlayer);
+</script>

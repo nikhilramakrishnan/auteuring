@@ -1,0 +1,103 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Custom theme colors */
+@theme {
+  --color-background-light: #ffffff;
+  --color-background-dark: #000000;
+  --color-text-light: #000000;
+  --color-text-dark: #e0e0e0;
+  --color-link-light: #0055bb;
+  --color-link-dark: #00ff88;
+  --color-gray-100-light: rgba(0, 0, 0, 0.1);
+  --color-gray-100-dark: #1a1a1a;
+  --color-gray-200-light: rgba(0, 0, 0, 0.2);
+  --color-gray-200-dark: #2a2a2a;
+  --color-gray-500-light: rgba(0, 0, 0, 0.5);
+  --color-gray-500-dark: #666666;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Light mode (default) */
+:root {
+  color-scheme: light;
+  --background: var(--color-background-light);
+  --foreground: var(--color-text-light);
+  --link: var(--color-link-light);
+  --gray-100: var(--color-gray-100-light);
+  --gray-200: var(--color-gray-200-light);
+  --gray-500: var(--color-gray-500-light);
+}
+
+/* Dark mode - system preference */
+@media (prefers-color-scheme: dark) {
+  :root:not(.theme-light) {
+    color-scheme: dark;
+    --background: var(--color-background-dark);
+    --foreground: var(--color-text-dark);
+    --link: var(--color-link-dark);
+    --gray-100: var(--color-gray-100-dark);
+    --gray-200: var(--color-gray-200-dark);
+    --gray-500: var(--color-gray-500-dark);
+  }
+}
+
+/* Dark mode - manual override */
+.theme-dark {
+  color-scheme: dark;
+  --background: var(--color-background-dark);
+  --foreground: var(--color-text-dark);
+  --link: var(--color-link-dark);
+  --gray-100: var(--color-gray-100-dark);
+  --gray-200: var(--color-gray-200-dark);
+  --gray-500: var(--color-gray-500-dark);
+}
+
+/* Light mode - manual override (for dark system preference) */
+.theme-light {
+  color-scheme: light;
+  --background: var(--color-background-light);
+  --foreground: var(--color-text-light);
+  --link: var(--color-link-light);
+  --gray-100: var(--color-gray-100-light);
+  --gray-200: var(--color-gray-200-light);
+  --gray-500: var(--color-gray-500-light);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/* Sidebar scrollbar */
+.sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: var(--gray-200);
+  border-radius: 2px;
+}

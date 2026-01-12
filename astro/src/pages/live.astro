@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ResponsiveEmbed from '../components/ResponsiveEmbed.astro';
+---
+
+<BaseLayout title="live">
+  <h1>live</h1>
+
+  <ResponsiveEmbed
+    src="https://www.youtube.com/embed/live_stream?channel=UCYEDKvbtaaG8EZL-FcdVfqg"
+    title="Live Stream"
+  />
+
+  <p class="text-center text-[var(--gray-500)] my-8">live when streaming &bull; offline otherwise</p>
+
+  <h2>past streams</h2>
+
+  <ResponsiveEmbed
+    src="https://www.youtube.com/embed/videoseries?list=UUYEDKvbtaaG8EZL-FcdVfqg"
+    title="Past Streams"
+  />
+</BaseLayout>

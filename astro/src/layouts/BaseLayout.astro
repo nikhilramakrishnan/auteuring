@@ -1,0 +1,93 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import '../styles/global.css';
+import Sidebar from '../components/Sidebar.astro';
+import MobileHeader from '../components/MobileHeader.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Personal portfolio of Nikhil - engineering, music, and filmmaking.' } = Astro.props;
+const fullTitle = title === 'auteuring' ? title : `${title} | auteuring`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{fullTitle}</title>
+
+    <!-- Prevent flash of wrong theme -->
+    <script is:inline>
+      (function() {
+        const theme = localStorage.getItem('theme');
+        if (theme) {
+          document.documentElement.classList.add(`theme-${theme}`);
+        }
+      })();
+    </script>
+
+    <ViewTransitions />
+  </head>
+  <body class="min-h-screen">
+    <MobileHeader />
+    <Sidebar />
+
+    <!-- Main content area -->
+    <main class="md:ml-72 pt-14 md:pt-0 min-h-screen">
+      <div class="max-w-3xl mx-auto px-6 py-12">
+        <article
+          class="prose prose-neutral dark:prose-invert max-w-none"
+          transition:animate="fade"
+        >
+          <slot />
+        </article>
+      </div>
+    </main>
+  </body>
+</html>
+
+<style>
+  /* Fade animation for view transitions */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-8px); }
+  }
+
+  ::view-transition-old(root) {
+    animation: fadeOut 0.2s ease-out;
+  }
+
+  ::view-transition-new(root) {
+    animation: fadeIn 0.2s ease-out;
+  }
+
+  /* Prose styling adjustments */
+  .prose {
+    --tw-prose-body: var(--foreground);
+    --tw-prose-headings: var(--foreground);
+    --tw-prose-links: var(--link);
+    --tw-prose-bold: var(--foreground);
+    --tw-prose-counters: var(--gray-500);
+    --tw-prose-bullets: var(--gray-500);
+    --tw-prose-hr: var(--gray-200);
+    --tw-prose-quotes: var(--foreground);
+    --tw-prose-quote-borders: var(--gray-200);
+    --tw-prose-captions: var(--gray-500);
+    --tw-prose-code: var(--foreground);
+    --tw-prose-pre-code: var(--foreground);
+    --tw-prose-pre-bg: var(--gray-100);
+    --tw-prose-th-borders: var(--gray-200);
+    --tw-prose-td-borders: var(--gray-100);
+  }
+</style>

@@ -1,0 +1,131 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+interface NavItem {
+  title: string;
+  href: string;
+  children?: NavItem[];
+}
+
+const navItems: NavItem[] = [
+  { title: 'engineering', href: '/engineering' },
+  {
+    title: 'music',
+    href: '/music',
+    children: [
+      {
+        title: 'iyer',
+        href: '/music/iyer',
+        children: [
+          { title: 'the early days', href: '/music/iyer/theearlydays' },
+          { title: 'gigs - memories', href: '/music/iyer/gigsandmemories' },
+          { title: 'now - releases', href: '/music/iyer/now' },
+        ]
+      }
+    ]
+  },
+  { title: 'filmmaking', href: '/filmmaking' },
+  { title: 'collection', href: '/collection' },
+  { title: 'live', href: '/live' },
+];
+
+const currentPath = Astro.url.pathname;
+
+function isActive(href: string): boolean {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
+---
+
+<aside class="sidebar fixed top-0 left-0 h-screen w-72 border-r border-[var(--gray-100)] overflow-y-auto p-6 flex flex-col">
+  <!-- Header with brand and theme toggle -->
+  <div class="flex items-center justify-between mb-8">
+    <a href="/" class="text-lg font-medium hover:opacity-80 transition-opacity">
+      auteuring
+    </a>
+    <ThemeToggle />
+  </div>
+
+  <!-- Navigation -->
+  <nav class="flex-1">
+    <ul class="space-y-1">
+      {navItems.map((item, index) => (
+        <li>
+          <a
+            href={item.href}
+            class:list={[
+              'block py-1.5 transition-colors duration-150',
+              isActive(item.href) ? 'text-[var(--link)]' : 'hover:text-[var(--link)]'
+            ]}
+          >
+            {index + 1}. {item.title}
+          </a>
+
+          {item.children && (
+            <ul class="ml-4 mt-1 space-y-1">
+              {item.children.map((child) => (
+                <li>
+                  <a
+                    href={child.href}
+                    class:list={[
+                      'block py-1 text-sm transition-colors duration-150',
+                      isActive(child.href) ? 'text-[var(--link)]' : 'text-[var(--gray-500)] hover:text-[var(--link)]'
+                    ]}
+                  >
+                    {child.title}
+                  </a>
+
+                  {child.children && (
+                    <ul class="ml-4 mt-1 space-y-0.5">
+                      {child.children.map((grandchild) => (
+                        <li>
+                          <a
+                            href={grandchild.href}
+                            class:list={[
+                              'block py-0.5 text-sm transition-colors duration-150',
+                              isActive(grandchild.href) ? 'text-[var(--link)]' : 'text-[var(--gray-500)] hover:text-[var(--link)]'
+                            ]}
+                          >
+                            {grandchild.title}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <!-- Footer link -->
+  <div class="mt-8 pt-4 border-t border-[var(--gray-100)]">
+    <a
+      href="https://kural.sh"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-sm text-[var(--gray-500)] hover:text-[var(--link)] transition-colors"
+    >
+      kural (kural)
+    </a>
+  </div>
+</aside>
+
+<style>
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .sidebar {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      z-index: 50;
+      background-color: var(--background);
+    }
+
+    .sidebar.open {
+      transform: translateX(0);
+    }
+  }
+</style>
