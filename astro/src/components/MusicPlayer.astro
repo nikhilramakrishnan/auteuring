@@ -1,9 +1,5 @@
 ---
-interface Track {
-  src: string;
-  title: string;
-  info: string;
-}
+import type { Track } from '../lib/music-player';
 
 interface Props {
   tracks: Track[];
@@ -185,126 +181,17 @@ const { tracks } = Astro.props;
 </style>
 
 <script>
+  import { PlayerController } from '../lib/music-player';
+
+  let controller: PlayerController | null = null;
+
   function initMusicPlayer() {
-    const audio = new Audio();
-    const playButton = document.getElementById('playButton') as HTMLButtonElement | null;
-    const prevButton = document.getElementById('prevButton') as HTMLButtonElement | null;
-    const nextButton = document.getElementById('nextButton') as HTMLButtonElement | null;
-    const downloadButton = document.getElementById('downloadButton') as HTMLButtonElement | null;
-    const progressBar = document.getElementById('progressBar');
-    const progress = document.getElementById('progress');
-    const timeDisplay = document.getElementById('timeDisplay');
-    const trackItems = document.querySelectorAll('.track-item');
+    controller?.destroy();
+    const container = document.querySelector<HTMLElement>('.music-player');
+    if (!container) return;
 
-    if (!playButton || !trackItems.length) return;
-
-    let currentTrackIndex = -1;
-    let isPlaying = false;
-
-    function formatTime(seconds: number) {
-      const mins = Math.floor(seconds / 60);
-      const secs = Math.floor(seconds % 60);
-      return `${mins}:${secs.toString().padStart(2, '0')}`;
-    }
-
-    function updatePlayPauseIcon() {
-      const playIcon = playButton?.querySelector('.play-icon');
-      const pauseIcon = playButton?.querySelector('.pause-icon');
-      playIcon?.classList.toggle('hidden', isPlaying);
-      pauseIcon?.classList.toggle('hidden', !isPlaying);
-    }
-
-    function loadTrack(index: number) {
-      if (index < 0 || index >= trackItems.length) return;
-
-      const track = trackItems[index] as HTMLElement;
-      const src = track.dataset.src;
-
-      trackItems.forEach(item => item.classList.remove('active'));
-      track.classList.add('active');
-
-      if (src) audio.src = src;
-      currentTrackIndex = index;
-
-      if (prevButton) prevButton.disabled = index === 0;
-      if (nextButton) nextButton.disabled = index === trackItems.length - 1;
-      if (downloadButton) downloadButton.disabled = false;
-
-      if (isPlaying) audio.play();
-    }
-
-    playButton?.addEventListener('click', () => {
-      if (currentTrackIndex === -1) loadTrack(0);
-
-      if (isPlaying) {
-        audio.pause();
-        isPlaying = false;
-      } else {
-        audio.play();
-        isPlaying = true;
-      }
-      updatePlayPauseIcon();
-    });
-
-    trackItems.forEach((track, index) => {
-      track.addEventListener('click', () => {
-        loadTrack(index);
-        audio.play();
-        isPlaying = true;
-        updatePlayPauseIcon();
-      });
-    });
-
-    audio.addEventListener('timeupdate', () => {
-      const percent = (audio.currentTime / audio.duration) * 100;
-      if (progress) progress.style.width = percent + '%';
-      if (timeDisplay) {
-        timeDisplay.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration || 0)}`;
-      }
-    });
-
-    progressBar?.addEventListener('click', (e: MouseEvent) => {
-      if (audio.duration && progressBar) {
-        const percent = e.offsetX / progressBar.offsetWidth;
-        audio.currentTime = percent * audio.duration;
-      }
-    });
-
-    audio.addEventListener('ended', () => {
-      if (currentTrackIndex < trackItems.length - 1) {
-        loadTrack(currentTrackIndex + 1);
-        audio.play();
-      } else {
-        isPlaying = false;
-        updatePlayPauseIcon();
-      }
-    });
-
-    prevButton?.addEventListener('click', () => {
-      if (currentTrackIndex > 0) loadTrack(currentTrackIndex - 1);
-    });
-
-    nextButton?.addEventListener('click', () => {
-      if (currentTrackIndex < trackItems.length - 1) loadTrack(currentTrackIndex + 1);
-    });
-
-    downloadButton?.addEventListener('click', () => {
-      if (currentTrackIndex >= 0) {
-        const track = trackItems[currentTrackIndex] as HTMLElement;
-        const src = track.dataset.src;
-        const title = track.dataset.title;
-        const info = track.dataset.info;
-
-        if (src) {
-          const a = document.createElement('a');
-          a.href = src;
-          a.download = `${info} ${title}.mp3`;
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-        }
-      }
-    });
+    controller = new PlayerController();
+    controller.init(container);
   }
 
   initMusicPlayer();
