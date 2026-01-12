@@ -187,10 +187,10 @@ const { tracks } = Astro.props;
 <script>
   function initMusicPlayer() {
     const audio = new Audio();
-    const playButton = document.getElementById('playButton');
-    const prevButton = document.getElementById('prevButton');
-    const nextButton = document.getElementById('nextButton');
-    const downloadButton = document.getElementById('downloadButton');
+    const playButton = document.getElementById('playButton') as HTMLButtonElement | null;
+    const prevButton = document.getElementById('prevButton') as HTMLButtonElement | null;
+    const nextButton = document.getElementById('nextButton') as HTMLButtonElement | null;
+    const downloadButton = document.getElementById('downloadButton') as HTMLButtonElement | null;
     const progressBar = document.getElementById('progressBar');
     const progress = document.getElementById('progress');
     const timeDisplay = document.getElementById('timeDisplay');

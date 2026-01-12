@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import Sidebar from '../components/Sidebar.astro';
 import MobileHeader from '../components/MobileHeader.astro';
@@ -32,7 +32,7 @@ const fullTitle = title === 'auteuring' ? title : `${title} | auteuring`;
       })();
     </script>
 
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body class="min-h-screen">
     <MobileHeader />

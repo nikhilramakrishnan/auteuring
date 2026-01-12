@@ -40,9 +40,7 @@
 
 <script>
   function initThemeToggle() {
-    const toggle = document.getElementById('theme-toggle');
-    const moonIcon = toggle?.querySelector('.moon-icon');
-    const sunIcon = toggle?.querySelector('.sun-icon');
+    const toggles = document.querySelectorAll('#theme-toggle');
 
     function isDarkMode() {
       return document.documentElement.classList.contains('theme-dark') ||
@@ -50,10 +48,14 @@
          window.matchMedia('(prefers-color-scheme: dark)').matches);
     }
 
-    function updateIcons() {
+    function updateAllIcons() {
       const dark = isDarkMode();
-      moonIcon?.classList.toggle('hidden', dark);
-      sunIcon?.classList.toggle('hidden', !dark);
+      toggles.forEach(toggle => {
+        const moonIcon = toggle.querySelector('.moon-icon');
+        const sunIcon = toggle.querySelector('.sun-icon');
+        moonIcon?.classList.toggle('hidden', dark);
+        sunIcon?.classList.toggle('hidden', !dark);
+      });
     }
 
     // Set initial state
@@ -62,17 +64,19 @@
       document.documentElement.classList.remove('theme-light', 'theme-dark');
       document.documentElement.classList.add(`theme-${savedTheme}`);
     }
-    updateIcons();
+    updateAllIcons();
 
-    // Handle toggle click
-    toggle?.addEventListener('click', () => {
-      const dark = isDarkMode();
-      const newTheme = dark ? 'light' : 'dark';
+    // Handle toggle click on all buttons
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const dark = isDarkMode();
+        const newTheme = dark ? 'light' : 'dark';
 
-      document.documentElement.classList.remove('theme-light', 'theme-dark');
-      document.documentElement.classList.add(`theme-${newTheme}`);
-      localStorage.setItem('theme', newTheme);
-      updateIcons();
+        document.documentElement.classList.remove('theme-light', 'theme-dark');
+        document.documentElement.classList.add(`theme-${newTheme}`);
+        localStorage.setItem('theme', newTheme);
+        updateAllIcons();
+      });
     });
   }
 
